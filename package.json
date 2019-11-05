@@ -1,0 +1,14 @@
+{
+  "name": "mmm-lynheter",
+  "version": "1.0.0",
+  "description": "Todo: Insert description here!",
+  "main": "MMM-Lynheter.js",
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "request": "^2.88.0"
+  },
+  "dependencies": {
+    "axios": "^0.19.0"
+  }
+}
