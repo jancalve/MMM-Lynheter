@@ -1,0 +1,41 @@
+.features {
+    font-size: 10px;
+    line-height: 14px;
+    text-align: left;
+}
+
+.tweet {
+   color: #FFFFFF;
+   padding-top: 10px;
+}
+
+.distance-far {
+    line-height: 0px;
+}
+
+.timeAndTweet {
+ 
+}
+
+.distance-close {
+    color: red;
+    line-height: 0px;
+}
+
+.feature {
+    border-radius: 25px;
+    border: 1px solid rgb(124, 122, 122);
+    padding: 20px;
+    width: 400px;
+  
+}
+
+.currentweather .weathericon,
+.currentweather .fa-home {
+  font-size: 75%;
+  line-height: 65px;
+  display: inline-block;
+  -ms-transform: translate(0, -3px); /* IE 9 */
+  -webkit-transform: translate(0, -3px); /* Safari */
+  transform: translate(0, -3px);
+}
