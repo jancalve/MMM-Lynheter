@@ -12,7 +12,7 @@ Module.register("MMM-Lynheter",{
 	loaded: false,
 
 	defaults: {
-		refreshInterval: 10000,
+		refreshInterval: 1000 * 60,
 		lat: 59.8260275,
 		lon: 10.8133689,
 		distance: 15,
