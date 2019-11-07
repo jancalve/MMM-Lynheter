@@ -8,7 +8,7 @@
  */
 
 Module.register("MMM-Lynheter",{
-	data: [],
+	news: [],
 	loaded: false,
 
 	defaults: {
@@ -39,13 +39,13 @@ Module.register("MMM-Lynheter",{
 			Log.log("#LOADING");
 			return wrapper;
 		}
-		if (!this.data) {
+		if (!this.news) {
 			wrapper.innerHTML = "No data";
 			Log.log("#NODATA");
 			return wrapper;
 		}
 
-		var features = this.data.features;
+		var features = this.news.features;
 		//Log.log('Parsing ' + features.length + ' features');
 
 		var nearestFeaturesWrapper = document.createElement("div");
@@ -110,16 +110,16 @@ Module.register("MMM-Lynheter",{
 	},
 
 	// unload the results from uber services
-	processData: function(data) {
+	processData: function(news) {
 		console.log('processData()');
-		if (!data) {
+		if (!news) {
 			// Did not receive usable new data.
 			// Maybe this needs a better check?
 			Log.log("#No data");
 			return;
 		}
 
-		this.data = data;
+		this.news = news;
 		this.loaded = true;
 		this.updateDom();
 	},
