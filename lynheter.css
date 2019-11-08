@@ -19,6 +19,10 @@
  
 }
 
+.divider {
+    padding-top: 4px;
+}
+
 .distance-close {
     color: red;
     line-height: 0px;
@@ -27,8 +31,10 @@
 .feature {
     border-radius: 6px;
     border: 1px solid rgb(124, 122, 122);
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 12px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-bottom: 4px;
     width: 25%;
   
 }
