@@ -12,7 +12,7 @@ Module.register("MMM-Lynheter",{
 	loaded: false,
 
 	defaults: {
-		refreshInterval: 1000 * 60 * 2,
+		refreshInterval: 1000 * 60 * 1,
 		lat: 59.8260275,
 		lon: 10.8133689,
 		distance: 15,
@@ -189,7 +189,7 @@ Module.register("MMM-Lynheter",{
 
 		this.news = news;
 		this.loaded = true;
-		this.updateDom();
+		this.updateDom(3000);
 	},
 
 
