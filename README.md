@@ -23,6 +23,7 @@ config: {
 		distance: 15, // Distance (in km) limit. 15 would return all news in a radius of 15km from
         // point-of-interest.
 		alertDistance: 4 // If a news item happened within the specified distance, it will be colored red.
+        recentHours: 1 // How recent (in hours) a news item should be before it is styled as a recent item.
 }
 
 ## Disclaimer

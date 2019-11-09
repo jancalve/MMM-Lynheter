@@ -1,9 +1,12 @@
 .features {
-    font-size: 20px;
+    font-size: 14px;
     font-family: "Roboto Condensed", sans-serif;
     font-weight: 300;
-    line-height: 22px;
+    line-height: 16px;
     text-align: left;
+    height: 1700px;
+    overflow: hidden;
+ 
 }
 
 .tweet {
@@ -15,6 +18,10 @@
     line-height: 0px;
 }
 
+.lynheter-news {
+
+}
+
 .timeAndTweet {
  
 }
@@ -23,12 +30,13 @@
     padding-top: 4px;
 }
 
-.distance-close {
-    color: red;
-    line-height: 0px;
+.distance {
 }
 
-.feature {
+.distance-far {
+}
+
+.far-feature {
     border-radius: 6px;
     border: 1px solid rgb(124, 122, 122);
     padding-top: 12px;
@@ -36,5 +44,36 @@
     padding-right: 2px;
     padding-bottom: 4px;
     width: 25%;
-  
+}
+
+.far-and-recent-feature {
+    border-radius: 6px;
+    border: 1px solid rgb(124, 122, 122);
+    padding-top: 12px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-bottom: 4px;
+    width: 25%;
+}
+
+.close-and-recent-feature {
+    border-radius: 6px;
+    border: 1px solid rgb(124, 122, 122);
+    background-color: rgb(206, 29, 29);
+    padding-top: 12px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-bottom: 4px;
+    width: 25%;
+}
+
+.close-feature {
+    border-radius: 6px;
+    border: 1px solid rgb(124, 122, 122);
+    background-color: rgb(148, 60, 60);
+    padding-top: 12px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-bottom: 4px;
+    width: 25%;
 }

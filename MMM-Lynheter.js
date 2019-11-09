@@ -17,7 +17,8 @@ Module.register("MMM-Lynheter",{
 		lon: 10.8133689,
 		distance: 15,
 		httpRequestURL: 'http://139.162.242.171:8442',
-		alertDistance: 5
+		alertDistance: 5,
+		recentHours: 1
 	},
 
 	getStyles: function () {
@@ -73,6 +74,8 @@ Module.register("MMM-Lynheter",{
 	// Override dom generator.
 	getDom: function () {
 		var wrapper = document.createElement("div");
+		wrapper.className = 'lynheter-news'
+
 		if (!this.loaded) {
 			wrapper.innerHTML = this.translate("LOADING");
 			Log.log("#LOADING");
@@ -83,6 +86,9 @@ Module.register("MMM-Lynheter",{
 			Log.log("#NODATA");
 			return wrapper;
 		}
+
+		var XHoursEarlier = new Date();
+		XHoursEarlier.setHours(XHoursEarlier.getHours() - this.config.recentHours);
 
 		var features = this.news.features;
 		//Log.log('Parsing ' + features.length + ' features');
@@ -100,15 +106,12 @@ Module.register("MMM-Lynheter",{
 			var distanceWrapper = document.createElement("div");
 			var distance = featureProperties.distance;
 			distanceWrapper.innerHTML = (new String(distance)).substring(0, 4) + ' km';
-			if (distance < this.config.alertDistance) {
-				distanceWrapper.className = 'distance-close';
-			}
-			else {
-				distanceWrapper.className = 'distance-far';
-			}
-
-			featureWrapper.appendChild(distanceWrapper);
+			distanceWrapper.className = "distance";
 			
+			featureWrapper.appendChild(distanceWrapper);
+
+			
+			var recentFeature = false;
 			var featureTweets = featureProperties.tweets;
 			for (var j = 0; j < featureTweets.length; j++) {
 				var currentFeatureTweet = featureTweets[j];
@@ -117,22 +120,50 @@ Module.register("MMM-Lynheter",{
 
 				var tweeter = currentFeatureTweet.tweeter;
 
-				var time = new Date(currentFeatureTweet.createdAt).toLocaleString("no", {  timeZone: 'UTC' });
-				var timeAndTweet = time + ' meldt av ' + tweeter;
+				var time = new Date(currentFeatureTweet.createdAt)
+				var timeString = time.toLocaleString("no");
+				var timeAndTweet = timeString + ' meldt av ' + tweeter;
 				var timeAndTweetWrapper = document.createElement("div");
 				timeAndTweetWrapper.className = 'timeAndTweet';
 				timeAndTweetWrapper.innerHTML = timeAndTweet;
 				tweetWrapper.appendChild(timeAndTweetWrapper);
+
+				// Figure out if this is a recent tweet or not
+				var timeBetweenNowAndTweet = time - XHoursEarlier;
+				// todo debug and fix this
+				console.log(time.toLocaleString("no") + ' vs ' + XHoursEarlier.toLocaleString("no"));
+				console.log('time diff at ' + distance + ' is ' + ((timeBetweenNowAndTweet/1000)/60) + ' minutes ');
+
+				if (timeBetweenNowAndTweet > 0) {
+					recentFeature = true;
+				}
 
 				var content = currentFeatureTweet.content;
 				var contentWrapper = document.createElement("div");
 				contentWrapper.className = 'content';
 				contentWrapper.innerHTML = '<i>' + content + '</i>';
 				tweetWrapper.appendChild(contentWrapper);
-
-
 				featureWrapper.appendChild(tweetWrapper);
 			}
+
+			if (distance < this.config.alertDistance) {
+				if (recentFeature) {
+					featureWrapper.className = 'close-and-recent-feature';
+				}
+				else {
+					featureWrapper.className = 'close-feature';
+				}
+			}
+			else {
+				if (recentFeature) {
+					featureWrapper.className = 'far-and-recent-feature';
+				}
+				else {
+					featureWrapper.className = 'far-feature';
+				}
+			}
+
+
 			nearestFeaturesWrapper.appendChild(featureWrapper);
 
 		}
